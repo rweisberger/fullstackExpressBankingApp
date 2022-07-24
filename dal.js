@@ -1,15 +1,39 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017';
-// const url = 'mongodb+srv://admin:<QgqSlQ936zLbxJ3Z>@cluster0.zhfaa.mongodb.net/?retryWrites=true&w=majority';
-let db = null;
 
-// connect to mongo
-MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
-    console.log("Connected successfully to db server");
+// const url = 'mongodb+srv://admin:QgqSlQ936zLbxJ3Z@cluster0.zhfaa.mongodb.net/?retryWrites=true&w=majority';
+// let db;
+// let collection;
 
-    // connect to myproject database
-    db = client.db('myproject');
-});
+// MongoClient.connect(url, function(err, database) {
+//     console.log("successfully connected to database")
+//     if(err) return console.error(err);
+  
+//     db = database;
+//     collection = db.collection("users");
+
+  
+//     // the Mongo driver recommends starting the server here 
+//     // because most apps *should* fail to start if they have no DB.
+//     // If yours is the exception, move the server startup elsewhere. 
+//   });
+  
+const url =
+'mongodb+srv://admin:QgqSlQ936zLbxJ3Z@cluster0.zhfaa.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(url);
+const dbName = "bank_project";
+let db;
+let collection;
+async function main() {
+  // Use connect method to connect to the server
+  await client.connect();
+  console.log("Connected successfully to server");
+  db = client.db(dbName);
+  collection = db.collection("users");
+}
+
+main()
+  .then(console.log)
+  .catch(console.error);
 
 // create user account using the collection.insertOne function
 function create(name, email, password, isAdmin) {
