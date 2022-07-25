@@ -26,7 +26,7 @@ app.post('/account/create', function (req, res) {
             }
             else{
                 // else create user
-                dal.create(req.body.name,req.body.email,req.body.password, req.body.isAdmin).
+                dal.create(req.body.accountNumber, req.body.name,req.body.email,req.body.password, req.body.isAdmin).
                     then((user) => {
                         console.log(user);
                         res.send(user);            
