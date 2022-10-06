@@ -21,18 +21,17 @@ app.post('/account/create', function (req, res) {
 
             // if user exists, return error message
             if(users.length > 0){
-                console.log('User already in exists');
-                res.send('User already in exists');    
+                console.log('User already exists');
+                res.send('User already exists');    
             }
             else{
                 // else create user
-                dal.create(req.body.accountNumber, req.body.name,req.body.email,req.body.password, req.body.isAdmin).
+                dal.create(req.body.accountNumber, req.body.name, req.body.email, req.body.password, req.body.isAdmin).
                     then((user) => {
                         console.log(user);
                         res.send(user);            
                     });            
             }
-
         });
 });
 

@@ -39,9 +39,6 @@ main()
 function create(accountNumber, name, email, password, isAdmin) {
     return new Promise((resolve, reject) => {
         const collection = db.collection('users');
-        const example = {
-            name
-        };
         const doc = {accountNumber, name, email, password, isAdmin, balance: 0, transactionHistory: []}
         collection.insertOne(doc, {w:1}, function(err, result) {
             err ? reject(err) : resolve(doc);
