@@ -104,7 +104,7 @@ function all() {
     })
 }
 
-// delete use account
+// delete user account
 function deleteAccount(email, password){
     return new Promise((resolve, reject) => {
         const collection = db.collection('users');

@@ -38,10 +38,11 @@ app.post('/account/create', function (req, res) {
 // login user 
 app.get('/account/login/:email/:password', function (req, res) {
 
-    dal.find(req.params.email).
-        then((user) => {
+    dal.find(req.params.email)
+        .then((user) => {
+            // success case, when promise is resolved
 
-            // if user exists, check password
+            // // if user exists, check password
             if(user.length > 0){
                 if (user[0].password === req.params.password){
                     res.send(user[0]);
@@ -53,8 +54,11 @@ app.get('/account/login/:email/:password', function (req, res) {
             else{
                 res.send('Login failed: user not found');
             }
-    });
-    
+        // trying to learn more about error handling- what happens to the errors in the dal functions?
+        // }, (error) => { 
+        //     //  failure, when promise is rejected
+        //     console.log(error)
+        });   
 });
 
 // find user account
