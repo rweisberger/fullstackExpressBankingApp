@@ -18,7 +18,7 @@ const MongoClient = require('mongodb').MongoClient;
 //   });
   
 const url =
-'mongodb+srv://admin:QgqSlQ936zLbxJ3Z@cluster0.zhfaa.mongodb.net/?retryWrites=true&w=majority';
+`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.zhfaa.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(url);
 const dbName = "bank_project";
 let db;

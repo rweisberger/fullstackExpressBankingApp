@@ -1,3 +1,6 @@
+
+require('dotenv').config();
+console.log(process.env);
 const express = require('express');
 const app     = express();
 const bodyParser = require('body-parser')
@@ -16,8 +19,8 @@ app.use(cors());
 app.post('/account/create', function (req, res) {
     console.log('request',req);
     // check if account exists
-    dal.find(req.body.email).
-        then((users) => {
+    dal.find(req.body.email)
+        .then((users) => {
 
             // if user exists, return error message
             if(users.length > 0){
